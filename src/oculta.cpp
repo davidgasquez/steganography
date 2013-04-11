@@ -23,7 +23,7 @@ int main()
     cin >> out;
 
     cout << "Introduzca mensaje: ";
-    cin.ignore();
+    cin.ignore(); //Salta el primer carácter.
     cin.getline((char *) message, 125000);
 
     TipoImagen type = LeerTipoImagen(name, rows, cols);
