@@ -15,6 +15,7 @@ documentacion:
 
 # ************ Compilación de módulos ************
 $(OBJ)/imagenES.o: $(SRC)/imagenES.cpp $(INC)/imagenES.h
+	mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(SRC)/imagenES.cpp -o $(OBJ)/imagenES.o
 
 $(OBJ)/codificar.o: $(SRC)/codificar.cpp $(INC)/codificar.h
@@ -29,6 +30,7 @@ $(OBJ)/revela.o: $(SRC)/revela.cpp
 # ************ Compilación de los dos apartados principales ************
 
 $(BIN)/oculta: $(OBJ)/imagenES.o $(OBJ)/codificar.o $(OBJ)/oculta.o 
+	mkdir -p $(dir $@)
 	$(CXX) $(OBJ)/imagenES.o $(OBJ)/codificar.o $(OBJ)/oculta.o -o $(BIN)/oculta
 
 $(BIN)/revela: $(OBJ)/imagenES.o $(OBJ)/codificar.o $(OBJ)/revela.o 
