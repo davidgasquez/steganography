@@ -9,21 +9,25 @@ const int MAXIMG = 1000000;
 const int MAXNAME = 100;
 const int MAXMESSAGE = 125000;
 
-int main()
+int main(int argc, char *argv[])
 {
-    char name[MAXNAME];
-    char out[MAXNAME];
+    if (argc != 3)
+    {
+        cerr << "Error en la introducción de los parámetros:" << endl;
+        cerr << "Uso: oculta [path_imagen_entrada] [nombre_imagen_salida]" << endl;
+        return -1;
+    }
+
+    char* name;
+    char* out;
     Byte img[MAXIMG];
     int rows, cols;
     Byte message[MAXMESSAGE];
 
-    cout << "Introduzca la imagen de entrada: ";
-    cin >> name;
-    cout << "Introduzca la imagen de salida: ";
-    cin >> out;
+    name = argv[1];
+    out = argv[2];
 
     cout << "Introduzca mensaje: ";
-    cin.ignore(); //Salta el primer carácter.
     cin.getline((char *) message, 125000);
 
     TipoImagen type = LeerTipoImagen(name, rows, cols);
@@ -55,6 +59,7 @@ int main()
 
     cout << "Ocultando..." << endl;
     Ocultar(img, message);
+    cout << "Mensaje ocultado con exito" << endl;
 
     if (type == IMG_PGM)
     {
